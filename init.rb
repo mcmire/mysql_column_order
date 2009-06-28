@@ -1,0 +1,1 @@
+ActiveRecord::ConnectionAdapters::MysqlAdapter.class_eval { include Mcmire::MysqlColumnOrder }
