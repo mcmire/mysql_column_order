@@ -2,27 +2,24 @@
 
 ## Summary
 
-Plugin for Ruby on Rails that extends migrations so you can specify an order when
-you're adding a new column, as well as other options that ALTER TABLE accepts.
+A Rails plugin that allows you to keep your schema organized as your app evolves by letting you insert a new column after another one.
 
 ## Usage
 
-This plugin adds options for:
+This plugin adds options to `add_column` for:
 
 * AFTER *column_name*
 * FIRST
-* any other options, in freeform
 
-So:
+So, in a migration, you could write:
 
     add_column :posts, :published, :boolean, :default => 0, :null => false, :after => :body
     #=> ALTER TABLE `posts` ADD COLUMN `published` TINYINT(1) NOT NULL DEFAULT 0 AFTER `body`
     
     add_column :posts, :id, :primary_key, :null => false, :first => true
     #=> ALTER TABLE `posts` ADD COLUMN `id` PRIMARY KEY NOT NULL FIRST
-    
-    change_column :comments, :body, :text, :options => "CHARACTER SET utf8 COLLATE utf8_unicode_ci"
-    #=> ALTER TABLE `comments` CHANGE COLUMN `body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci
+
+Conceptually, there's no reason this plugin can't work in other DBMSes that support `AFTER`, `FIRST`, or other column options. At present, however, it plugs into ActiveRecord's MySQL adapter only.
 
 ## Installation
 
@@ -30,13 +27,12 @@ So:
 
 ## Support
 
-If you find any bugs with this plugin, feel free to:
+If you find a bug or have a feature request, I want to know about it! Feel free to file a [Github issue](http://github.com/mcmire/ar_attr_lazy/issues), or do one better and fork the [project on Github](http://github.com/mcmire/ar_attr_lazy) and send me a pull request or patch. Be sure to add tests if you do so, though.
 
-* file a bug report in the [Issues area on Github](http://github.com/mcmire/mysql_column_order/issues)
-* fork the [project on Github](http://github.com/mcmire/mysql_column_order) and send me a pull request
-* email me (*firstname* dot *lastname* at gmail dot com)
+You can also [email me](mailto:elliot.winkler@gmail.com), or [find me on Twitter](http://twitter.com/mcmire).
 
 ## Author/License
 
-Adapted from [John Hume's patch](http://elhumidor.blogspot.com/2009/06/specifying-column-order-in-activerecord.html) by Elliot Winkler.
-Released under the MIT license.
+[Original implementation](http://elhumidor.blogspot.com/2009/06/specifying-column-order-in-activerecord.html) by John Hume (thank you!).
+
+(c) 2009-2010 Elliot Winkler. See LICENSE for details.
