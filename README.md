@@ -21,6 +21,10 @@ So, in a migration, you could write:
 
 Conceptually, there's no reason this plugin can't work in other DBMSes that support `AFTER`, `FIRST`, or other column options. At present, however, it plugs into ActiveRecord's MySQL adapter only.
 
+## Compatibility
+
+This has been tested successfully with ActiveRecord 2.3.5, 2.2.3, 2.1.2, and 2.0.5.
+
 ## Installation
 
     script/plugin install git://github.com/mcmire/mysql_column_order.git
